@@ -56,6 +56,8 @@ def evaluate_window(window, piece):
         score += 2
 
     if window.count(opponent_piece) == 3 and window.count(0) == 1:
-        score -= 4
+        score -= 5
+    if window.count(opponent_piece) == 2 and window.count(0) == 2:
+        score -= 2
 
     return score

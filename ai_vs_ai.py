@@ -8,7 +8,7 @@ def ai_vs_ai(board, player_turn):
     while not game_over:
         if turn == 0 and not game_over:
 
-            column, minimax_score = minimax_alpha_beta(board, 2, -math.inf, math.inf, True)
+            column, minimax_score = minimax_alpha_beta(board, 5, -math.inf, math.inf, True)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
@@ -28,7 +28,7 @@ def ai_vs_ai(board, player_turn):
 
         if turn == 1 and not game_over:
 
-            column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True)
+            column, minimax_score = minimax_alpha_beta(board, 5, -math.inf, math.inf, True)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
@@ -47,7 +47,7 @@ def ai_vs_ai(board, player_turn):
                 turn = turn % 2
 
         if game_over:
-            pygame.time.wait(3000)
+            pygame.time.wait(5000)
 
 
 
