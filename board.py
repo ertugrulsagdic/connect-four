@@ -60,38 +60,39 @@ class Board:
         # Check horizontal locations for win
         for column in range(self.columns - 3):
             for row in range(self.rows):
-                if self.board[row][column] == piece \
-                        and self.board[row][column + 1] == piece \
-                        and self.board[row][column + 2] == piece \
-                        and self.board[row][column + 3] == piece:
+                if (self.board[row][column] == piece 
+                        and self.board[row][column + 1] == piece 
+                        and self.board[row][column + 2] == piece 
+                        and self.board[row][column + 3] == piece):
                     return True
 
         # Check vertical locations for win
         for column in range(self.columns):
             for row in range(self.rows - 3):
-                if self.board[row][column] == piece \
-                        and self.board[row + 1][column] == piece \
-                        and self.board[row + 2][column] == piece \
-                        and self.board[row + 3][column] == piece:
+                if (self.board[row][column] == piece 
+                        and self.board[row + 1][column] == piece 
+                        and self.board[row + 2][column] == piece 
+                        and self.board[row + 3][column] == piece):
                     return True
 
         # Check positively sloped diagonals
         for column in range(self.columns - 3):
             for row in range(self.rows - 3):
-                if self.board[row][column] == piece \
-                        and self.board[row + 1][column + 1] == piece \
-                        and self.board[row + 2][column + 2] == piece \
-                        and self.board[row + 3][column + 3] == piece:
+                if (self.board[row][column] == piece 
+                        and self.board[row + 1][column + 1] == piece 
+                        and self.board[row + 2][column + 2] == piece 
+                        and self.board[row + 3][column + 3] == piece):
                     return True
 
         # Check negatively sloped diagonals
         for column in range(self.columns - 3):
             for row in range(3, self.rows):
-                if self.board[row][column] == piece \
-                        and self.board[row - 1][column + 1] == piece \
-                        and self.board[row - 2][column + 2] == piece \
-                        and self.board[row - 3][column + 3] == piece:
+                if (self.board[row][column] == piece 
+                        and self.board[row - 1][column + 1] == piece 
+                        and self.board[row - 2][column + 2] == piece 
+                        and self.board[row - 3][column + 3] == piece):
                     return True
+        return False
 
     def draw_board(self, player_1, player_2):
         for column in range(self.columns):

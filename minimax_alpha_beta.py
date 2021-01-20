@@ -1,7 +1,7 @@
 import math
 import random
 from board import *
-
+from evaluations import *
 
 def get_valid_locations(board):
     valid_locations = []
@@ -22,26 +22,26 @@ def minimax_alpha_beta(board, depth, alpha, beta, piece):
         opponent_piece = 1
 
     valid_locations = get_valid_locations(board)
-    is_terminal = is_terminal_node(board)
+    is_terminal = is_terminal_node(board, piece, opponent_piece)
     if depth == 0 or is_terminal:
         if is_terminal:
             if board.winning_move(piece):
                 return (None, 100000000000000)
             elif board.winning_move(opponent_piece):
-                return (None, -10000000000000)
+                return (None, -100000000000000)
             else:  # Game is over, no more valid moves
                 return (None, 0)
         else:  # Depth is zero
-            return (None, score_position(board, AI_PIECE))
-    if piece == 1:
+            return (None, evaluation3(board, piece))
+    if piece == 2:
         value = -math.inf
         column = random.choice(valid_locations)
         for col in valid_locations:
-            row = board.get_next_row(board, col)
+            row = board.get_next_row(col)
             b_copy = Board()
-            b.copy.board = board.board
+            b_copy.board = board.board.copy()
             b_copy.drop_piece(row, col, piece)
-            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, False)[1]
+            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, piece)[1]
             if new_score > value:
                 value = new_score
                 column = col
@@ -55,9 +55,9 @@ def minimax_alpha_beta(board, depth, alpha, beta, piece):
         for col in valid_locations:
             row = board.get_next_row(col)
             b_copy = Board()
-            b.copy.board = board.board
+            b_copy.board = board.board.copy()
             b_copy.drop_piece( row, col, opponent_piece)
-            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, True)[1]
+            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, piece)[1]
             if new_score < value:
                 value = new_score
                 column = col
