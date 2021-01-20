@@ -43,11 +43,10 @@ def evaluation3(board, piece):
     return score
 
 def evaluate_window(window, piece):
+    score = 0
+    opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
-    else:
-        opponent_piece = 1
-    score = 0
 
     if window.count(piece) == 4:
         score += 100
