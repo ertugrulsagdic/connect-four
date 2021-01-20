@@ -1,8 +1,4 @@
-import random
-from board import *
-import pygame
 import sys
-import math
 from minimax_alpha_beta import *
 
 
