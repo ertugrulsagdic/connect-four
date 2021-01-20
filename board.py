@@ -3,34 +3,34 @@ import pygame
 
 
 class Board:
-    def __init__(board):
+    def __init__(self):
         # colors
-        board.white = (255, 255, 255)
-        board.black = (0, 0, 0)
-        board.red = (255, 0, 0)
-        board.yellow = (255, 255, 0)
+        self.white = (255, 255, 255)
+        self.black = (0, 0, 0)
+        self.red = (255, 0, 0)
+        self.yellow = (255, 255, 0)
 
         # board
-        board.rows = 6
-        board.columns = 7
+        self.rows = 6
+        self.columns = 7
 
         # create empty board
-        board.board = create_board()
+        self.board = create_board()
 
         # square size of the screen
-        board.square_size = 100
+        self.square_size = 100
         # piece radius of the screen
-        board.radius = int(board.square_size / 2 - 5)
+        self.radius = int(self.square_size / 2 - 5)
 
         # height and width of the screen
-        board.width = board.columns * board.square_size
-        board.height = (board.rows + 1) * board.square_size
+        self.width = self.columns * self.square_size
+        self.height = (self.rows + 1) * self.square_size
 
         # size of the screen
-        board.size = (board.width, board.height)
+        self.size = (self.width, self.height)
 
         # set screen for the game
-        board.screen = pygame.display.set_mode(board.size)
+        self.screen = pygame.display.set_mode(self.size)
 
 
 # create board with zeros
