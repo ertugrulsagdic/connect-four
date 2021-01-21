@@ -1,4 +1,5 @@
 from board import *
+import math
 
 def evaluation1(board, piece):
     return 10
@@ -49,14 +50,14 @@ def evaluate_window(window, piece):
         opponent_piece = 2
 
     if window.count(piece) == 4 and window.count(0) == 0:
-        score += 100000000000000
+        score += math.inf
     elif window.count(piece) == 3 and window.count(0) == 1:
         score += 5
     elif window.count(piece) == 2 and window.count(0) == 2:
         score += 2
 
     if window.count(opponent_piece) == 4 and window.count(0) == 0:
-        score -= 10000000000000
+        score -= math.inf
     elif window.count(opponent_piece) == 3 and window.count(0) == 1:
         score -= 4
 

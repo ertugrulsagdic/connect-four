@@ -20,7 +20,7 @@ def ai_vs_ai(board, player_turn):
                 board.drop_piece(row, column, 1)
 
                 if board.winning_move(1):
-                    label = pygame.font.SysFont("monospace", 75).render("Player 1 wins!", 1, board.red)
+                    label = pygame.font.SysFont("monospace", 24).render("Red (AI) wins!", 1, board.red)
                     board.screen.blit(label, (40, 10))
                     game_over = True
 
@@ -46,7 +46,7 @@ def ai_vs_ai(board, player_turn):
                 board.drop_piece(row, column, 2)
 
                 if board.winning_move(2):
-                    label = pygame.font.SysFont("monospace", 75).render("Player 2 wins!", 2, board.yellow)
+                    label = pygame.font.SysFont("monospace", 24).render("Yellow (AI) wins!", 2, board.yellow)
                     board.screen.blit(label, (40, 10))
                     game_over = True
 

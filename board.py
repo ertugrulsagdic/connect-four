@@ -7,6 +7,7 @@ class Board:
         # colors
         self.white = (255, 255, 255)
         self.black = (0, 0, 0)
+        self.gray = (50, 50, 50)
         self.red = (255, 0, 0)
         self.yellow = (255, 255, 0)
 
@@ -18,7 +19,7 @@ class Board:
         self.board = self.create_board()
 
         # square size of the screen
-        self.square_size = 100
+        self.square_size = 50
         # piece radius of the screen
         self.radius = int(self.square_size / 2 - 5)
 
@@ -100,7 +101,7 @@ class Board:
                 pygame.draw.rect(self.screen, self.white, (
                     column * self.square_size, row * self.square_size + self.square_size, self.square_size,
                     self.square_size))
-                pygame.draw.circle(self.screen, self.black, (
+                pygame.draw.circle(self.screen, self.gray, (
                     int(column * self.square_size + self.square_size / 2),
                     int(row * self.square_size + self.square_size + self.square_size / 2)), self.radius)
 
