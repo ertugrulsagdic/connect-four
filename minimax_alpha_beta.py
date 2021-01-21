@@ -24,9 +24,9 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizingPlayer, piece):
     is_terminal = is_terminal_node(board)
     if depth == 0:
         if len(get_valid_locations(board)) == 0:
-            return None, 0
+            return (None, 0)
         else:  # Depth is zero
-            return None, evaluation3(board, piece)
+            return (None, evaluation2(board, piece))
     if maximizingPlayer:
         value = -math.inf
         column = random.choice(valid_locations)
