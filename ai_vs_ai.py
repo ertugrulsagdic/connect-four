@@ -47,7 +47,7 @@ def ai_vs_ai(board, player_turn):
                 turn = turn % 2
 
         if game_over:
-            pygame.time.wait(3000)
+            pygame.time.wait(30000000)
 
 
 
