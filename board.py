@@ -92,7 +92,7 @@ class Board:
                         and self.board[row - 2][column + 2] == piece 
                         and self.board[row - 3][column + 3] == piece):
                     return True
-        return False
+        #return False
 
     def draw_board(self, player_1, player_2):
         for column in range(self.columns):

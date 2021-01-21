@@ -41,7 +41,7 @@ def minimax_alpha_beta(board, depth, alpha, beta, piece):
             b_copy = Board()
             b_copy.board = board.board.copy()
             b_copy.drop_piece(row, col, piece)
-            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, piece)[1]
+            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, opponent_piece)[1]
             if new_score > value:
                 value = new_score
                 column = col
