@@ -3,6 +3,7 @@ import random
 from board import *
 from evaluations import *
 
+
 def get_valid_locations(board):
     valid_locations = []
     for column in range(board.columns):
@@ -21,14 +22,9 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizingPlayer, piece):
         opponent_piece = 2
     valid_locations = get_valid_locations(board)
     is_terminal = is_terminal_node(board)
-    if depth == 0 or is_terminal:
-        if is_terminal:
-            if board.winning_move(piece):
-                return None, 100000000000000
-            elif board.winning_move(opponent_piece):
-                return None, -100000000000000
-            else:  # Game is over, no more valid moves
-                return None, 0
+    if depth == 0:
+        if len(get_valid_locations(board)) == 0:
+            return None, 0
         else:  # Depth is zero
             return None, evaluation3(board, piece)
     if maximizingPlayer:

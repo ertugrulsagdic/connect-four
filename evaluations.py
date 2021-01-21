@@ -1,7 +1,7 @@
 from board import *
 
 def evaluation1(board, piece):
-    pass
+    return 10
 
 def evaluation2(board, piece):
     pass
@@ -48,16 +48,18 @@ def evaluate_window(window, piece):
     if piece == 1:
         opponent_piece = 2
 
-    if window.count(piece) == 4:
-        score += 100
+    if window.count(piece) == 4 and window.count(0) == 0:
+        score += 100000000000000
     elif window.count(piece) == 3 and window.count(0) == 1:
         score += 5
     elif window.count(piece) == 2 and window.count(0) == 2:
         score += 2
 
-    if window.count(opponent_piece) == 3 and window.count(0) == 1:
-        score -= 5
-    if window.count(opponent_piece) == 2 and window.count(0) == 2:
-        score -= 2
+    if window.count(opponent_piece) == 4 and window.count(0) == 0:
+        score -= 10000000000000
+    elif window.count(opponent_piece) == 3 and window.count(0) == 1:
+        score -= 4
+
+    return score
 
     return score

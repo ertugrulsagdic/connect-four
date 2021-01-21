@@ -9,10 +9,10 @@ def ai_vs_ai(board, player_turn):
     while not game_over:
         if turn == 0 and not game_over:
 
-            if rounds == 0:
-                column = random.randint(0, 6)
-            else:
-                column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 1)
+            # if rounds == 0 or rounds == 1:
+            #     column = random.randint(0, 6)
+            # else:
+            column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 1)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
@@ -35,10 +35,10 @@ def ai_vs_ai(board, player_turn):
 
         if turn == 1 and not game_over:
 
-            if rounds == 0:
-                column = random.randint(0, 6)
-            else:
-                column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 2)
+            # if rounds == 0 or rounds == 1:
+            #     column = random.randint(0, 6)
+            # else:
+            column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 2)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
