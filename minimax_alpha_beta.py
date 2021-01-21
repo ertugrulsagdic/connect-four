@@ -15,19 +15,22 @@ def is_terminal_node(board):
     return board.winning_move(1) or board.winning_move(2) or len(get_valid_locations(board)) == 0
 
 
-def minimax_alpha_beta(board, depth, alpha, beta, maximizingPlayer):
+def minimax_alpha_beta(board, depth, alpha, beta, maximizingPlayer, piece):
+    opponent_piece = 1
+    if piece == 1:
+        opponent_piece = 2
     valid_locations = get_valid_locations(board)
     is_terminal = is_terminal_node(board)
     if depth == 0 or is_terminal:
         if is_terminal:
-            if board.winning_move(2):
+            if board.winning_move(piece):
                 return None, 100000000000000
-            elif board.winning_move(1):
+            elif board.winning_move(opponent_piece):
                 return None, -100000000000000
             else:  # Game is over, no more valid moves
                 return None, 0
         else:  # Depth is zero
-            return None, evaluation3(board, 2)
+            return None, evaluation3(board, piece)
     if maximizingPlayer:
         value = -math.inf
         column = random.choice(valid_locations)
@@ -35,8 +38,8 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizingPlayer):
             row = board.get_next_row(col)
             b_copy = Board()
             b_copy.board = board.board.copy()
-            b_copy.drop_piece(row, col, 2)
-            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, False)[1]
+            b_copy.drop_piece(row, col, piece)
+            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, False, piece)[1]
             if new_score > value:
                 value = new_score
                 column = col
@@ -51,8 +54,8 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizingPlayer):
             row = board.get_next_row(col)
             b_copy = Board()
             b_copy.board = board.board.copy()
-            b_copy.drop_piece( row, col, 1)
-            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, True)[1]
+            b_copy.drop_piece(row, col, opponent_piece)
+            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, True, piece)[1]
             if new_score < value:
                 value = new_score
                 column = col
