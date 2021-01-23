@@ -1,26 +1,36 @@
 import sys
+import time
+
 from minimax_alpha_beta import *
+from minimax import *
+from board import *
 
 
-def ai_vs_ai(board, player_turn):
+def ai_vs_ai(board, player_turn, depth=4, evaluation_function=4):
     game_over = False
     rounds = 0
     turn = player_turn
     while not game_over:
+        if len(board.get_valid_locations()) == 0:
+            label = pygame.font.SysFont("monospace", 24).render("DRAW!", 0, board.white)
+            board.screen.blit(label, (40, 10))
+            pygame.display.update()
+            game_over = True
+
         if turn == 0 and not game_over:
 
-            if rounds == 0:
-                column = random.randint(0, 6)
-            else:
-                column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 1)
+            # if rounds == 0 or rounds == 1:
+            #   column = random.randint(0, 6)
+            # else:
+            column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 1, evaluation_function)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
                 row = board.get_next_row(column)
-                board.drop_piece(row, column, 1)
+                board.place_piece(row, column, 1)
 
-                if board.winning_move(1):
-                    label = pygame.font.SysFont("monospace", 75).render("Player 1 wins!", 1, board.red)
+                if board.check_win(1):
+                    label = pygame.font.SysFont("monospace", 24).render("Red (AI) wins!", 1, board.red)
                     board.screen.blit(label, (40, 10))
                     game_over = True
 
@@ -30,23 +40,22 @@ def ai_vs_ai(board, player_turn):
                 rounds += 1
                 turn += 1
                 turn = turn % 2
-            else:
-                game_over = False
 
         if turn == 1 and not game_over:
 
-            if rounds == 0:
-                column = random.randint(0, 6)
-            else:
-                column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 2)
+            # if rounds == 0 or rounds == 1:
+            #     column = random.randint(0, 6)
+            # else:
+
+            column, minimax_score = minimax_alpha_beta2(board, depth, -math.inf, math.inf, True, 2, evaluation_function)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
                 row = board.get_next_row(column)
-                board.drop_piece(row, column, 2)
+                board.place_piece(row, column, 2)
 
-                if board.winning_move(2):
-                    label = pygame.font.SysFont("monospace", 75).render("Player 2 wins!", 2, board.yellow)
+                if board.check_win(2):
+                    label = pygame.font.SysFont("monospace", 24).render("Yellow (AI) wins!", 2, board.yellow)
                     board.screen.blit(label, (40, 10))
                     game_over = True
 
@@ -56,8 +65,7 @@ def ai_vs_ai(board, player_turn):
                 rounds += 1
                 turn += 1
                 turn = turn % 2
-            else:
-                game_over = False
+
 
         if game_over:
             pygame.time.wait(30000000)

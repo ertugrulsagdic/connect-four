@@ -8,6 +8,12 @@ def human_vs_human(board, player_turn):
     game_over = False
     turn = player_turn
     while not game_over:
+        if len(board.get_valid_locations()) == 0:
+            label = pygame.font.SysFont("monospace", 24).render("DRAW!", 0, board.white)
+            board.screen.blit(label, (40, 10))
+            pygame.display.update()
+            game_over = True
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -15,7 +21,7 @@ def human_vs_human(board, player_turn):
             if event.type == pygame.MOUSEMOTION:
                 pygame.draw.rect(
                     board.screen,
-                    board.black,
+                    board.gray,
                     (0, 0, board.width, board.square_size)
                 )
                 position_x = event.pos[0]
@@ -36,9 +42,10 @@ def human_vs_human(board, player_turn):
             pygame.display.update()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+                print('------------------------------')
                 pygame.draw.rect(
                     board.screen,
-                    board.black,
+                    board.gray,
                     (0, 0, board.width, board.square_size)
                 )
                 position_x = event.pos[0]
@@ -47,20 +54,20 @@ def human_vs_human(board, player_turn):
 
                     if board.is_empty(column):
                         row = board.get_next_row(column)
-                        board.drop_piece(row, column, 1)
+                        board.place_piece(row, column, 1)
 
-                        if board.winning_move(1):
-                            label = pygame.font.SysFont("monospace", 75).render("Player 1 wins!", 1, board.red)
+                        if board.check_win(1):
+                            label = pygame.font.SysFont("monospace", 24).render("Red wins!", 1, board.red)
                             board.screen.blit(label, (40, 10))
                             game_over = True
                 else:
 
                     if board.is_empty(column):
                         row = board.get_next_row(column)
-                        board.drop_piece(row, column, 2)
+                        board.place_piece(row, column, 2)
 
-                        if board.winning_move(2):
-                            label = pygame.font.SysFont("monospace", 75).render("Player 2 wins!", 2, board.yellow)
+                        if board.check_win(2):
+                            label = pygame.font.SysFont("monospace", 24).render("Yellow wins!", 2, board.yellow)
                             board.screen.blit(label, (40, 10))
                             game_over = True
 

@@ -7,6 +7,7 @@ class Board:
         # colors
         self.white = (255, 255, 255)
         self.black = (0, 0, 0)
+        self.gray = (50, 50, 50)
         self.red = (255, 0, 0)
         self.yellow = (255, 255, 0)
 
@@ -18,7 +19,7 @@ class Board:
         self.board = self.create_board()
 
         # square size of the screen
-        self.square_size = 100
+        self.square_size = 50
         # piece radius of the screen
         self.radius = int(self.square_size / 2 - 5)
 
@@ -38,7 +39,7 @@ class Board:
         return board
 
     # place the piece on board
-    def drop_piece(self, row, column, piece):
+    def place_piece(self, row, column, piece):
         self.board[row][column] = piece
 
     # check if the place for piece empty
@@ -56,7 +57,14 @@ class Board:
     def print_board(self):
         print(np.flip(self.board, 0))
 
-    def winning_move(self, piece):
+    def get_valid_locations(self):
+        valid_locations = []
+        for column in range(self.columns):
+            if self.board[self.rows - 1][column] == 0:
+                valid_locations.append(column)
+        return valid_locations
+
+    def check_win(self, piece):
         # Check horizontal locations for win
         for column in range(self.columns - 3):
             for row in range(self.rows):
@@ -92,7 +100,7 @@ class Board:
                         and self.board[row - 2][column + 2] == piece 
                         and self.board[row - 3][column + 3] == piece):
                     return True
-        return False
+        #return False
 
     def draw_board(self, player_1, player_2):
         for column in range(self.columns):
@@ -100,7 +108,7 @@ class Board:
                 pygame.draw.rect(self.screen, self.white, (
                     column * self.square_size, row * self.square_size + self.square_size, self.square_size,
                     self.square_size))
-                pygame.draw.circle(self.screen, self.black, (
+                pygame.draw.circle(self.screen, self.gray, (
                     int(column * self.square_size + self.square_size / 2),
                     int(row * self.square_size + self.square_size + self.square_size / 2)), self.radius)
 

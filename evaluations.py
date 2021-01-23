@@ -1,10 +1,27 @@
 from board import *
+import math
+
 
 def evaluation1(board, piece):
-    pass
+    return 10
+
 
 def evaluation2(board, piece):
-    pass
+    opponent_piece = 1
+    if piece == 1:
+        opponent_piece = 2
+
+    piece_fours = evaluation2_scan_util(board, piece, 4)
+    piece_threes = evaluation2_scan_util(board, piece, 3)
+    piece_twos = evaluation2_scan_util(board, piece, 2)
+    opponent_fours = evaluation2_scan_util(board, opponent_piece, 4)
+    opponent_threes = evaluation2_scan_util(board, opponent_piece, 3)
+    opponent_twos = evaluation2_scan_util(board, opponent_piece, 2)
+
+    utility = (1000 * piece_fours + 5 * piece_threes + 2 * piece_twos) - (
+                1000 * opponent_fours + 5 * opponent_threes + 2 * opponent_twos)
+    return utility
+
 
 def evaluation3(board, piece):
     window_length = 4
@@ -42,22 +59,90 @@ def evaluation3(board, piece):
 
     return score
 
+
 def evaluate_window(window, piece):
     score = 0
     opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
 
-    if window.count(piece) == 4:
-        score += 100
+    if window.count(piece) == 4 and window.count(0) == 0:
+        score += 1000
     elif window.count(piece) == 3 and window.count(0) == 1:
         score += 5
     elif window.count(piece) == 2 and window.count(0) == 2:
         score += 2
 
-    if window.count(opponent_piece) == 3 and window.count(0) == 1:
+    if window.count(opponent_piece) == 4 and window.count(0) == 0:
+        score -= 1000
+    elif window.count(opponent_piece) == 3 and window.count(0) == 1:
         score -= 5
-    if window.count(opponent_piece) == 2 and window.count(0) == 2:
+    elif window.count(opponent_piece) == 2 and window.count(0) == 2:
         score -= 2
-
     return score
+
+
+def evaluation2_scan_util(board, piece, number_of_piece):
+    count = 0
+    for i in range(board.rows):
+        for j in range(board.columns):
+            if board.board[i][j] == piece:
+                count += vertical_scan(i, j, board, number_of_piece)
+                count += horizontal_scan(i, j, board, number_of_piece)
+                count += diagonal_scan(i, j, board, number_of_piece)
+    return count
+
+
+def vertical_scan(row, column, board, number_of_piece):
+    c = 0
+    for i in range(row, board.rows):
+        if board.board[i][column] == board.board[row][column]:
+            c += 1
+        else:
+            break
+    if c >= number_of_piece:
+        return 1
+    else:
+        return 0
+
+
+def horizontal_scan(row, column, board, number_of_piece):
+    c = 0
+    for j in range(column, board.columns):
+        if board.board[row][j] == board.board[row][column]:
+            c += 1
+        else:
+            break
+    if c >= number_of_piece:
+        return 1
+    else:
+        return 0
+
+
+def diagonal_scan(row, column, board, number_of_piece):
+    total = 0
+    count = 0
+    j = column
+    for i in range(row, 6):
+        if j > 6:
+            break
+        elif board.board[i][j] == board.board[row][column]:
+            count += 1
+        else:
+            break
+        j += 1
+    if count >= number_of_piece:
+        total += 1
+    count = 0
+    j = column
+    for i in range(row, -1, -1):
+        if j > 6:
+            break
+        elif board.board[i][j] == board.board[row][column]:
+            count += 1
+        else:
+            break
+        j += 1
+    if count >= number_of_piece:
+        total += 1
+    return total
