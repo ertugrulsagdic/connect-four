@@ -11,17 +11,17 @@ from ai_vs_ai import *
 # argv3 -> ply, 
 # argv4 -> which player starts first (0-1)
 def main():
-    pygame.init()
-    board = Board()
-
-    board.print_board()
-    board.draw_board(1, 2)
-
     print(sys.argv[0])
     print('h-h h-ai ai-ai ', sys.argv[1])
     print('eval func., ', sys.argv[2])
     print('ply, ', sys.argv[3])
     print('which player starts first (0-1)', sys.argv[4])
+    
+    pygame.init()
+    board = Board()
+
+    board.print_board()
+    board.draw_board(1, 2)
 
     # Human vs Human
     if ( int(sys.argv[1]) == 0):
