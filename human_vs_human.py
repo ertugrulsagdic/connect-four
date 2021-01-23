@@ -54,9 +54,9 @@ def human_vs_human(board, player_turn):
 
                     if board.is_empty(column):
                         row = board.get_next_row(column)
-                        board.drop_piece(row, column, 1)
+                        board.place_piece(row, column, 1)
 
-                        if board.winning_move(1):
+                        if board.check_win(1):
                             label = pygame.font.SysFont("monospace", 24).render("Red wins!", 1, board.red)
                             board.screen.blit(label, (40, 10))
                             game_over = True
@@ -64,9 +64,9 @@ def human_vs_human(board, player_turn):
 
                     if board.is_empty(column):
                         row = board.get_next_row(column)
-                        board.drop_piece(row, column, 2)
+                        board.place_piece(row, column, 2)
 
-                        if board.winning_move(2):
+                        if board.check_win(2):
                             label = pygame.font.SysFont("monospace", 24).render("Yellow wins!", 2, board.yellow)
                             board.screen.blit(label, (40, 10))
                             game_over = True

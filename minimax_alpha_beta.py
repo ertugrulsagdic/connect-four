@@ -25,7 +25,7 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece, eval
             row = board.get_next_row(col)
             b_copy = Board()
             b_copy.board = board.board.copy()
-            b_copy.drop_piece(row, col, piece)
+            b_copy.place_piece(row, col, piece)
             new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, False, piece, evaluation_function)[1]
             if new_score > value:
                 value = new_score
@@ -41,7 +41,7 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece, eval
             row = board.get_next_row(col)
             b_copy = Board()
             b_copy.board = board.board.copy()
-            b_copy.drop_piece(row, col, opponent_piece)
+            b_copy.place_piece(row, col, opponent_piece)
             new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, True, piece, evaluation_function)[1]
             if new_score < value:
                 value = new_score
@@ -74,7 +74,7 @@ def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece, eva
             row = board.get_next_row(col)
             b_copy = Board()
             b_copy.board = board.board.copy()
-            b_copy.drop_piece(row, col, piece)
+            b_copy.place_piece(row, col, piece)
             new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, False, piece, evaluation_function)[1]
             if new_score > value:
                 value = new_score
@@ -90,7 +90,7 @@ def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece, eva
             row = board.get_next_row(col)
             b_copy = Board()
             b_copy.board = board.board.copy()
-            b_copy.drop_piece(row, col, opponent_piece)
+            b_copy.place_piece(row, col, opponent_piece)
             new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, True, piece, evaluation_function)[1]
             if new_score < value:
                 value = new_score

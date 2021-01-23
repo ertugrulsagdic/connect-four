@@ -39,7 +39,7 @@ class Board:
         return board
 
     # place the piece on board
-    def drop_piece(self, row, column, piece):
+    def place_piece(self, row, column, piece):
         self.board[row][column] = piece
 
     # check if the place for piece empty
@@ -64,7 +64,7 @@ class Board:
                 valid_locations.append(column)
         return valid_locations
 
-    def winning_move(self, piece):
+    def check_win(self, piece):
         # Check horizontal locations for win
         for column in range(self.columns - 3):
             for row in range(self.rows):
