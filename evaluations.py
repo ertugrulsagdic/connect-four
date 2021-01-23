@@ -1,9 +1,9 @@
 from board import *
 import math
-
+import random
 
 def evaluation0(board, piece):
-    return 10
+    return random.randint(-100, 100)
 
 
 def evaluation1(board, piece):
