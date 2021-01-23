@@ -1,5 +1,6 @@
 import random
 from evaluations import *
+from board import *
 
 
 def minimax(board, depth, maximizing_player, piece):

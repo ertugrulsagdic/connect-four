@@ -1,8 +1,9 @@
 import random
 from evaluations import *
+from board import *
 
 
-def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece):
+def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece, evaluation_function=3):
     opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
@@ -11,7 +12,12 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece):
         if len(valid_locations) == 0:
             return None, 0
         else:  # Depth is zero
-            return None, evaluation3(board, piece)
+            if evaluation_function == 1:
+                return None, evaluation1(board, piece)
+            elif evaluation_function == 2:
+                return None, evaluation2(board, piece)
+            elif evaluation_function == 3:
+                return None, evaluation3(board, piece)
     if maximizing_player:
         value = -math.inf
         column = random.choice(valid_locations)
@@ -20,7 +26,7 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece):
             b_copy = Board()
             b_copy.board = board.board.copy()
             b_copy.drop_piece(row, col, piece)
-            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, False, piece)[1]
+            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, False, piece, evaluation_function)[1]
             if new_score > value:
                 value = new_score
                 column = col
@@ -36,7 +42,7 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece):
             b_copy = Board()
             b_copy.board = board.board.copy()
             b_copy.drop_piece(row, col, opponent_piece)
-            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, True, piece)[1]
+            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, True, piece, evaluation_function)[1]
             if new_score < value:
                 value = new_score
                 column = col
@@ -46,7 +52,7 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece):
         return column, value
 
 
-def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece):
+def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece, evaluation_function=3):
     opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
@@ -55,7 +61,12 @@ def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece):
         if len(valid_locations) == 0:
             return None, 0
         else:  # Depth is zero
-            return None, evaluation2(board, piece)
+            if evaluation_function == 1:
+                return None, evaluation1(board, piece)
+            elif evaluation_function == 2:
+                return None, evaluation2(board, piece)
+            elif evaluation_function == 3:
+                return None, evaluation3(board, piece)
     if maximizing_player:
         value = -math.inf
         column = random.choice(valid_locations)
@@ -64,7 +75,7 @@ def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece):
             b_copy = Board()
             b_copy.board = board.board.copy()
             b_copy.drop_piece(row, col, piece)
-            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, False, piece)[1]
+            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, False, piece, evaluation_function)[1]
             if new_score > value:
                 value = new_score
                 column = col
@@ -80,7 +91,7 @@ def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece):
             b_copy = Board()
             b_copy.board = board.board.copy()
             b_copy.drop_piece(row, col, opponent_piece)
-            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, True, piece)[1]
+            new_score = minimax_alpha_beta(b_copy, depth - 1, alpha, beta, True, piece, evaluation_function)[1]
             if new_score < value:
                 value = new_score
                 column = col
