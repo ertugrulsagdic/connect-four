@@ -2,28 +2,28 @@ from board import *
 import math
 
 
-def evaluation1(board, piece):
+def evaluation0(board, piece):
     return 10
 
 
-def evaluation2(board, piece):
+def evaluation1(board, piece):
     opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
 
-    piece_fours = evaluation2_scan_util(board, piece, 4)
-    piece_threes = evaluation2_scan_util(board, piece, 3)
-    piece_twos = evaluation2_scan_util(board, piece, 2)
-    opponent_fours = evaluation2_scan_util(board, opponent_piece, 4)
-    opponent_threes = evaluation2_scan_util(board, opponent_piece, 3)
-    opponent_twos = evaluation2_scan_util(board, opponent_piece, 2)
+    piece_fours = evaluation1_scan_util(board, piece, 4)
+    piece_threes = evaluation1_scan_util(board, piece, 3)
+    piece_twos = evaluation1_scan_util(board, piece, 2)
+    opponent_fours = evaluation1_scan_util(board, opponent_piece, 4)
+    opponent_threes = evaluation1_scan_util(board, opponent_piece, 3)
+    opponent_twos = evaluation1_scan_util(board, opponent_piece, 2)
 
     utility = (1000 * piece_fours + 5 * piece_threes + 2 * piece_twos) - (
                 1000 * opponent_fours + 5 * opponent_threes + 2 * opponent_twos)
     return utility
 
 
-def evaluation3(board, piece):
+def evaluation2(board, piece):
     window_length = 4
     score = 0
 
@@ -82,7 +82,7 @@ def evaluate_window(window, piece):
     return score
 
 
-def evaluation2_scan_util(board, piece, number_of_piece):
+def evaluation1_scan_util(board, piece, number_of_piece):
     count = 0
     for i in range(board.rows):
         for j in range(board.columns):
