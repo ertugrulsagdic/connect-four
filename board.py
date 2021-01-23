@@ -57,6 +57,13 @@ class Board:
     def print_board(self):
         print(np.flip(self.board, 0))
 
+    def get_valid_locations(self):
+        valid_locations = []
+        for column in range(self.columns):
+            if self.board[self.rows - 1][column] == 0:
+                valid_locations.append(column)
+        return valid_locations
+
     def winning_move(self, piece):
         # Check horizontal locations for win
         for column in range(self.columns - 3):

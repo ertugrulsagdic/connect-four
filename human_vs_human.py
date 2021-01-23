@@ -8,6 +8,12 @@ def human_vs_human(board, player_turn):
     game_over = False
     turn = player_turn
     while not game_over:
+        if len(board.get_valid_locations()) == 0:
+            label = pygame.font.SysFont("monospace", 24).render("DRAW!", 0, board.white)
+            board.screen.blit(label, (40, 10))
+            pygame.display.update()
+            game_over = True
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()

@@ -1,33 +1,18 @@
-import math
 import random
-from board import *
 from evaluations import *
 
 
-def get_valid_locations(board):
-    valid_locations = []
-    for column in range(board.columns):
-        if board.board[board.rows - 1][column] == 0:
-            valid_locations.append(column)
-    return valid_locations
-
-
-def is_terminal_node(board):
-    return board.winning_move(1) or board.winning_move(2) or len(get_valid_locations(board)) == 0
-
-
-def minimax_alpha_beta(board, depth, alpha, beta, maximizingPlayer, piece):
+def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece):
     opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
-    valid_locations = get_valid_locations(board)
-    is_terminal = is_terminal_node(board)
-    if depth == 0:
-        if len(get_valid_locations(board)) == 0:
-            return (None, 0)
+    valid_locations = board.get_valid_locations()
+    if depth == 0 or len(valid_locations) == 0:
+        if len(valid_locations) == 0:
+            return None, 0
         else:  # Depth is zero
-            return (None, evaluation2(board, piece))
-    if maximizingPlayer:
+            return None, evaluation3(board, piece)
+    if maximizing_player:
         value = -math.inf
         column = random.choice(valid_locations)
         for col in valid_locations:

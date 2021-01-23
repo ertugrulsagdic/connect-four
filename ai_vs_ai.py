@@ -7,13 +7,19 @@ def ai_vs_ai(board, player_turn):
     rounds = 0
     turn = player_turn
     while not game_over:
+        if len(board.get_valid_locations()) == 0:
+            label = pygame.font.SysFont("monospace", 24).render("DRAW!", 0, board.white)
+            board.screen.blit(label, (40, 10))
+            pygame.display.update()
+            game_over = True
+
         if turn == 0 and not game_over:
 
             # if rounds == 0 or rounds == 1:
             #     column = random.randint(0, 6)
             # else:
             column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 1)
-
+            print('column ', column)
             if board.is_empty(column):
                 pygame.time.wait(500)
                 row = board.get_next_row(column)
@@ -30,8 +36,6 @@ def ai_vs_ai(board, player_turn):
                 rounds += 1
                 turn += 1
                 turn = turn % 2
-            else:
-                game_over = False
 
         if turn == 1 and not game_over:
 
@@ -39,6 +43,7 @@ def ai_vs_ai(board, player_turn):
             #     column = random.randint(0, 6)
             # else:
             column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 2)
+            print('column ', column)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
@@ -56,8 +61,7 @@ def ai_vs_ai(board, player_turn):
                 rounds += 1
                 turn += 1
                 turn = turn % 2
-            else:
-                game_over = False
+
 
         if game_over:
             pygame.time.wait(5000)

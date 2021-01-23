@@ -1,8 +1,10 @@
 from board import *
 import math
 
+
 def evaluation1(board, piece):
     return 10
+
 
 def evaluation2(board, piece):
     opponent_piece = 1
@@ -16,9 +18,9 @@ def evaluation2(board, piece):
     opponent_threes = evaluation2_scan_util(board, opponent_piece, 3)
     opponent_twos = evaluation2_scan_util(board, opponent_piece, 2)
 
-    utility = (100000*piece_fours +  5*piece_threes + 2*piece_twos) - (1000000*opponent_fours + 5*opponent_threes + 2*opponent_twos )
+    utility = (100000 * piece_fours + 5 * piece_threes + 2 * piece_twos) - (
+                1000000 * opponent_fours + 5 * opponent_threes + 2 * opponent_twos)
     return utility
-
 
 
 def evaluation3(board, piece):
@@ -57,6 +59,7 @@ def evaluation3(board, piece):
 
     return score
 
+
 def evaluate_window(window, piece):
     score = 0
     opponent_piece = 1
@@ -64,19 +67,18 @@ def evaluate_window(window, piece):
         opponent_piece = 2
 
     if window.count(piece) == 4 and window.count(0) == 0:
-        score += math.inf
+        score += 100
     elif window.count(piece) == 3 and window.count(0) == 1:
         score += 5
     elif window.count(piece) == 2 and window.count(0) == 2:
         score += 2
 
     if window.count(opponent_piece) == 4 and window.count(0) == 0:
-        score -= math.inf
+        score -= 1000
     elif window.count(opponent_piece) == 3 and window.count(0) == 1:
-        score -= 4
-
-    return score
-
+        score -= 5
+    elif window.count(opponent_piece) == 2 and window.count(0) == 2:
+        score -= 2
     return score
 
 
@@ -90,6 +92,7 @@ def evaluation2_scan_util(board, piece, number_of_piece):
                 count += diagonal_scan(i, j, board, number_of_piece)
     return count
 
+
 def vertical_scan(row, column, board, number_of_piece):
     c = 0
     for i in range(row, board.rows):
@@ -102,6 +105,7 @@ def vertical_scan(row, column, board, number_of_piece):
     else:
         return 0
 
+
 def horizontal_scan(row, column, board, number_of_piece):
     c = 0
     for j in range(column, board.columns):
@@ -113,6 +117,7 @@ def horizontal_scan(row, column, board, number_of_piece):
         return 1
     else:
         return 0
+
 
 def diagonal_scan(row, column, board, number_of_piece):
     total = 0
