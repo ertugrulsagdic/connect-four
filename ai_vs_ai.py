@@ -1,5 +1,8 @@
 import sys
+import time
+
 from minimax_alpha_beta import *
+from minimax import *
 
 
 def ai_vs_ai(board, player_turn):
@@ -16,10 +19,10 @@ def ai_vs_ai(board, player_turn):
         if turn == 0 and not game_over:
 
             # if rounds == 0 or rounds == 1:
-            #     column = random.randint(0, 6)
+            #   column = random.randint(0, 6)
             # else:
-            column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 1)
-            print('column ', column)
+            column, minimax_score = minimax_alpha_beta(board, 6, -math.inf, math.inf, True, 1)
+
             if board.is_empty(column):
                 pygame.time.wait(500)
                 row = board.get_next_row(column)
@@ -42,8 +45,8 @@ def ai_vs_ai(board, player_turn):
             # if rounds == 0 or rounds == 1:
             #     column = random.randint(0, 6)
             # else:
-            column, minimax_score = minimax_alpha_beta(board, 4, -math.inf, math.inf, True, 2)
-            print('column ', column)
+
+            column, minimax_score = minimax_alpha_beta2(board, 6, -math.inf, math.inf, True, 2)
 
             if board.is_empty(column):
                 pygame.time.wait(500)

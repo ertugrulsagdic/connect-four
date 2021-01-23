@@ -6,7 +6,7 @@ def minimax(board, depth, maximizing_player, piece):
     opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
-    valid_locations = board.get_valid_locations(board)
+    valid_locations = board.get_valid_locations()
     if depth == 0:
         if len(valid_locations) == 0:
             return None, 0

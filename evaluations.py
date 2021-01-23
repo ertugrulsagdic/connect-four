@@ -18,8 +18,8 @@ def evaluation2(board, piece):
     opponent_threes = evaluation2_scan_util(board, opponent_piece, 3)
     opponent_twos = evaluation2_scan_util(board, opponent_piece, 2)
 
-    utility = (100000 * piece_fours + 5 * piece_threes + 2 * piece_twos) - (
-                1000000 * opponent_fours + 5 * opponent_threes + 2 * opponent_twos)
+    utility = (1000 * piece_fours + 5 * piece_threes + 2 * piece_twos) - (
+                1000 * opponent_fours + 5 * opponent_threes + 2 * opponent_twos)
     return utility
 
 
@@ -67,7 +67,7 @@ def evaluate_window(window, piece):
         opponent_piece = 2
 
     if window.count(piece) == 4 and window.count(0) == 0:
-        score += 100
+        score += 1000
     elif window.count(piece) == 3 and window.count(0) == 1:
         score += 5
     elif window.count(piece) == 2 and window.count(0) == 2:
