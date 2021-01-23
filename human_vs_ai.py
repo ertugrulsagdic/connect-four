@@ -4,7 +4,7 @@ import pygame
 from board import *
 
 
-def human_vs_ai(board, player_turn, depth=4, evaluation_function=3):
+def human_vs_ai(board, player_turn, depth=4, evaluation_function=2):
     game_over = False
     turn = player_turn
     while not game_over:

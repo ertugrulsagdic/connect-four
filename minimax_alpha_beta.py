@@ -3,7 +3,7 @@ from evaluations import *
 from board import *
 
 
-def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece, evaluation_function=3):
+def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece, evaluation_function=2):
     opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
@@ -12,12 +12,12 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece, eval
         if len(valid_locations) == 0:
             return None, 0
         else:  # Depth is zero
-            if evaluation_function == 1:
+            if evaluation_function == 0:
+                return None, evaluation0(board, piece)
+            elif evaluation_function == 1:
                 return None, evaluation1(board, piece)
             elif evaluation_function == 2:
                 return None, evaluation2(board, piece)
-            elif evaluation_function == 3:
-                return None, evaluation3(board, piece)
     if maximizing_player:
         value = -math.inf
         column = random.choice(valid_locations)
@@ -52,7 +52,7 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece, eval
         return column, value
 
 
-def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece, evaluation_function=3):
+def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece, evaluation_function=2):
     opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
@@ -61,12 +61,12 @@ def minimax_alpha_beta2(board, depth, alpha, beta, maximizing_player, piece, eva
         if len(valid_locations) == 0:
             return None, 0
         else:  # Depth is zero
-            if evaluation_function == 1:
+            if evaluation_function == 0:
+                return None, evaluation0(board, piece)
+            elif evaluation_function == 1:
                 return None, evaluation1(board, piece)
             elif evaluation_function == 2:
                 return None, evaluation2(board, piece)
-            elif evaluation_function == 3:
-                return None, evaluation3(board, piece)
     if maximizing_player:
         value = -math.inf
         column = random.choice(valid_locations)

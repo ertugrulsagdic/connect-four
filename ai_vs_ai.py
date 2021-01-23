@@ -6,7 +6,7 @@ from minimax import *
 from board import *
 
 
-def ai_vs_ai(board, player_turn, depth=4, evaluation_function=4):
+def ai_vs_ai(board, player_turn, depth=4, evaluation_function=2):
     game_over = False
     rounds = 0
     turn = player_turn
