@@ -46,7 +46,7 @@ def evaluation2(board, piece):
             window = col_array[r:r + window_length]
             score += evaluate_window(window, piece)
 
-    ## Score posiive sloped diagonal
+    ## Score positive sloped diagonal
     for r in range(board.rows - 3):
         for c in range(board.columns - 3):
             window = [board.board[r + i][c + i] for i in range(window_length)]

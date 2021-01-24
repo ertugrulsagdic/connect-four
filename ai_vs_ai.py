@@ -6,7 +6,7 @@ from minimax import *
 from board import *
 
 
-def ai_vs_ai(board, player_turn, depth=4, evaluation_function=2):
+def ai_vs_ai(board, player_turn, depth=7, evaluation_function=2):
     game_over = False
     rounds = 0
     turn = player_turn
@@ -25,7 +25,7 @@ def ai_vs_ai(board, player_turn, depth=4, evaluation_function=2):
             # if rounds == 0 or rounds == 1:
             #   column = random.randint(0, 6)
             # else:
-            column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 1, evaluation_function)
+            column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 1, 2)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
@@ -54,7 +54,7 @@ def ai_vs_ai(board, player_turn, depth=4, evaluation_function=2):
             #     column = random.randint(0, 6)
             # else:
 
-            column, minimax_score = minimax_alpha_beta2(board, depth, -math.inf, math.inf, True, 2, evaluation_function)
+            column, minimax_score = minimax_alpha_beta2(board, depth, -math.inf, math.inf, True, 2, 2)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
@@ -79,13 +79,9 @@ def ai_vs_ai(board, player_turn, depth=4, evaluation_function=2):
 
 
         if game_over:
-<<<<<<< HEAD
-            pygame.time.wait(30000000)
-=======
             pygame.time.wait(5000)
             print('Average decision time of Red (AI) (seconds) :', sum(decision_times0)/len(decision_times0))
             print('Average decision time of Yellow (AI) (seconds) :', sum(decision_times1)/len(decision_times1))
->>>>>>> c863c0646627b934e651dd626abcad30a57a12c7
 
 
 
