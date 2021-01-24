@@ -36,7 +36,7 @@ def main():
         print(sys.argv[0])
         print('h-h h-ai ai-ai ', sys.argv[1])
         print('eval func1, ', sys.argv[2])
-        print('eval func2, ', sys.argv[2])
+        print('eval func2, ', sys.argv[3])
         print('ply, ', sys.argv[4])
         print('which player starts first (0-1)', sys.argv[5])
         ai_vs_ai(board, player_turn=int(sys.argv[5]), depth=int(sys.argv[4]), evaluation_function1=int(sys.argv[2]), evaluation_function2=int(sys.argv[3]))
