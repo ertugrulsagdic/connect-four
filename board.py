@@ -19,7 +19,7 @@ class Board:
         self.board = self.create_board()
 
         # square size of the screen
-        self.square_size = 50
+        self.square_size = 100
         # piece radius of the screen
         self.radius = int(self.square_size / 2 - 5)
 
