@@ -13,7 +13,7 @@ def minimax(board, depth, maximizing_player, piece, evaluation_function=2):
             return None, 0
         else:  # Depth is zero
             if evaluation_function == 0:
-                return None, evaluation0(board, piece)
+                return None, evaluation0()
             elif evaluation_function == 1:
                 return None, evaluation1(board, piece)
             elif evaluation_function == 2:

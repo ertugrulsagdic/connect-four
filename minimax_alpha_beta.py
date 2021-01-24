@@ -13,7 +13,7 @@ def minimax_alpha_beta(board, depth, alpha, beta, maximizing_player, piece, eval
             return None, 0
         else:  # Depth is zero
             if evaluation_function == 0:
-                return None, evaluation0(board, piece)
+                return None, evaluation0()
             elif evaluation_function == 1:
                 return None, evaluation1(board, piece)
             elif evaluation_function == 2:
