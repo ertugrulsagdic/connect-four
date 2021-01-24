@@ -1,5 +1,6 @@
 import sys
 from minimax_alpha_beta import *
+from minimax import *
 import pygame
 from board import *
 import time
@@ -74,7 +75,8 @@ def human_vs_ai(board, player_turn, depth=4, evaluation_function=3):
 
         if turn == 1 and not game_over:
             start_time0 = time.time()
-            column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 2, evaluation_function)
+            #column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 2, evaluation_function)
+            column, minimax_score = minimax(board, depth, True,1,evaluation_function)
 
             if board.is_empty(column):
                 pygame.time.wait(500)

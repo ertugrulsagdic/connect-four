@@ -25,7 +25,8 @@ def ai_vs_ai(board, player_turn, depth=5, evaluation_function1=3, evaluation_fun
             # if rounds == 0 or rounds == 1:
             #   column = random.randint(0, 6)
             # else:
-            column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 1, evaluation_function1)
+            #column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 1, evaluation_function1)
+            column, minimax_score = minimax(board, depth, True,1,evaluation_function1)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
@@ -57,7 +58,8 @@ def ai_vs_ai(board, player_turn, depth=5, evaluation_function1=3, evaluation_fun
             #     column = random.randint(0, 6)
             # else:
 
-            column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 2, evaluation_function2)
+            #column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 2, evaluation_function2)
+            column, minimax_score = minimax(board, depth, True,2,evaluation_function2)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
