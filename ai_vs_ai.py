@@ -6,7 +6,7 @@ from minimax import *
 from board import *
 
 
-def ai_vs_ai(board, player_turn, depth=8, evaluation_function1=2, evaluation_function2=2):
+def ai_vs_ai(board, player_turn, depth=8, evaluation_function1=3, evaluation_function2=3):
     game_over = False
     rounds = 0
     turn = player_turn
@@ -38,16 +38,18 @@ def ai_vs_ai(board, player_turn, depth=8, evaluation_function1=2, evaluation_fun
                     pygame.display.update()
                     game_over = True
 
+                end_time0 = time.time()
+                decision_time = end_time0 - start_time0
+                decision_times0.append(decision_time)
+                print('Red (AI) decision time (seconds):', decision_time)
+                
                 board.print_board()
                 board.draw_board(1, 2)
 
                 rounds += 1
                 turn += 1
                 turn = turn % 2
-                end_time0 = time.time()
-                decision_time = end_time0 - start_time0
-                decision_times0.append(decision_time)
-                print('Red (AI) decision time (seconds):', decision_time)
+
 
         if turn == 1 and not game_over:
             start_time1 = time.time()
@@ -68,16 +70,19 @@ def ai_vs_ai(board, player_turn, depth=8, evaluation_function1=2, evaluation_fun
                     pygame.display.update()
                     game_over = True
 
+
+                end_time1 = time.time()
+                decision_time1 = end_time1 - start_time1
+                decision_times1.append(decision_time1)
+                print('Yellow (AI) decision time (seconds):', decision_time1 )
+
                 board.print_board()
                 board.draw_board(1, 2)
 
                 rounds += 1
                 turn += 1
                 turn = turn % 2
-                end_time1 = time.time()
-                decision_time1 = end_time1 - start_time1
-                decision_times1.append(decision_time1)
-                print('Yellow (AI) decision time (seconds):', decision_time1 )
+
 
 
         if game_over:

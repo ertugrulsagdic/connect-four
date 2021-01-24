@@ -55,7 +55,18 @@ class Board:
                 return row
 
     def print_board(self):
-        print(np.flip(self.board, 0))
+        print('--- STATE ---')
+        printer = np.flip(self.board.copy(), 0)
+        for i in range(self.rows):
+            for j in range(self.columns):
+                if int(printer[i][j]) == 1:
+                    print('R ', end='')
+                elif int(printer[i][j]) == 2:
+                    print('Y ', end='')
+                else:
+                    print('0 ', end='')
+            print()
+        print()
 
     def get_valid_locations(self):
         valid_locations = []

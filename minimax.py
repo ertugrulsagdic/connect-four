@@ -3,7 +3,7 @@ from evaluations import *
 from board import *
 
 
-def minimax(board, depth, maximizing_player, piece, evaluation_function=2):
+def minimax(board, depth, maximizing_player, piece, evaluation_function=3):
     opponent_piece = 1
     if piece == 1:
         opponent_piece = 2
@@ -12,11 +12,11 @@ def minimax(board, depth, maximizing_player, piece, evaluation_function=2):
         if len(valid_locations) == 0:
             return None, 0
         else:  # Depth is zero
-            if evaluation_function == 0:
+            if evaluation_function == 1:
                 return None, evaluation0()
-            elif evaluation_function == 1:
-                return None, evaluation1(board, piece)
             elif evaluation_function == 2:
+                return None, evaluation1(board, piece)
+            elif evaluation_function == 3:
                 return None, evaluation2(board, piece)
     if maximizing_player:
         value = -math.inf
