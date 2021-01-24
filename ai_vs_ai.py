@@ -42,7 +42,7 @@ def ai_vs_ai(board, player_turn, depth=5, evaluation_function1=3, evaluation_fun
                 decision_time = end_time0 - start_time0
                 decision_times0.append(decision_time)
                 print('Red (AI) decision time (seconds):', decision_time)
-                
+
                 board.print_board()
                 board.draw_board(1, 2)
 

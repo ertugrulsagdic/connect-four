@@ -2,11 +2,16 @@ import sys
 from minimax_alpha_beta import *
 import pygame
 from board import *
+import time
 
 
 def human_vs_ai(board, player_turn, depth=4, evaluation_function=3):
     game_over = False
     turn = player_turn
+
+    decision_times0 = []
+    decision_times1 = []
+
     while not game_over:
         if len(board.get_valid_locations()) == 0:
             label = pygame.font.SysFont("monospace", 24).render("DRAW!", 0, board.white)
@@ -68,7 +73,7 @@ def human_vs_ai(board, player_turn, depth=4, evaluation_function=3):
                         turn = turn % 2
 
         if turn == 1 and not game_over:
-
+            start_time0 = time.time()
             column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 2, evaluation_function)
 
             if board.is_empty(column):
@@ -81,6 +86,11 @@ def human_vs_ai(board, player_turn, depth=4, evaluation_function=3):
                     board.screen.blit(label, (40, 10))
                     game_over = True
 
+
+                end_time0 = time.time()
+                decision_time = end_time0 - start_time0
+                decision_times0.append(decision_time)
+                print('(AI) decision time (seconds):', decision_time)
                 board.print_board()
                 board.draw_board(1, 2)
 
@@ -88,6 +98,7 @@ def human_vs_ai(board, player_turn, depth=4, evaluation_function=3):
                 turn = turn % 2
 
         if game_over:
+            print('Average decision time of (AI) (seconds) :', sum(decision_times0)/len(decision_times0))
             pygame.time.wait(3000)
 
 
