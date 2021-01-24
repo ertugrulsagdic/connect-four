@@ -2,7 +2,8 @@ from board import *
 import math
 import random
 
-def evaluation0(board, piece):
+
+def evaluation0():
     return random.randint(-100, 100)
 
 
@@ -19,7 +20,7 @@ def evaluation1(board, piece):
     opponent_twos = evaluation1_scan_util(board, opponent_piece, 2)
 
     utility = (1000 * piece_fours + 5 * piece_threes + 2 * piece_twos) - (
-                1000 * opponent_fours + 5 * opponent_threes + 2 * opponent_twos)
+            1000 * opponent_fours + 5 * opponent_threes + 2 * opponent_twos)
     return utility
 
 

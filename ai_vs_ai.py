@@ -6,7 +6,7 @@ from minimax import *
 from board import *
 
 
-def ai_vs_ai(board, player_turn, depth=7, evaluation_function=2):
+def ai_vs_ai(board, player_turn, depth=8, evaluation_function1=2, evaluation_function2=2):
     game_over = False
     rounds = 0
     turn = player_turn
@@ -25,7 +25,7 @@ def ai_vs_ai(board, player_turn, depth=7, evaluation_function=2):
             # if rounds == 0 or rounds == 1:
             #   column = random.randint(0, 6)
             # else:
-            column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 1, 2)
+            column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 1, evaluation_function1)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
@@ -35,6 +35,7 @@ def ai_vs_ai(board, player_turn, depth=7, evaluation_function=2):
                 if board.check_win(1):
                     label = pygame.font.SysFont("monospace", 24).render("Red (AI) wins!", 1, board.red)
                     board.screen.blit(label, (40, 10))
+                    pygame.display.update()
                     game_over = True
 
                 board.print_board()
@@ -54,7 +55,7 @@ def ai_vs_ai(board, player_turn, depth=7, evaluation_function=2):
             #     column = random.randint(0, 6)
             # else:
 
-            column, minimax_score = minimax_alpha_beta2(board, depth, -math.inf, math.inf, True, 2, 2)
+            column, minimax_score = minimax_alpha_beta(board, depth, -math.inf, math.inf, True, 2, evaluation_function2)
 
             if board.is_empty(column):
                 pygame.time.wait(500)
@@ -64,6 +65,7 @@ def ai_vs_ai(board, player_turn, depth=7, evaluation_function=2):
                 if board.check_win(2):
                     label = pygame.font.SysFont("monospace", 24).render("Yellow (AI) wins!", 2, board.yellow)
                     board.screen.blit(label, (40, 10))
+                    pygame.display.update()
                     game_over = True
 
                 board.print_board()
